@@ -1,0 +1,17 @@
+params = {:users => {:from => {"age" => "", "pay" => "", "weigh" => "", "stature" => ""}, :to => {"age" => "", "pay" => "", "weigh" => "", "stature" => ""}}}
+
+
+from = params[:users][:from]
+to   = params[:users][:to]
+
+p = []
+
+
+from.each_with_index do |f,i|
+	if !f[1].empty?
+		p.push("#{f[0]} = #{f[1]}") if to[f[0]].empty? else p.push("#{f[0]} BETWEEN #{f[1]} and #{to[f[0]]}") if to[f[0]] >= f[1]
+	end
+end
+
+p = p.join(" AND ")
+print "#{p}"
